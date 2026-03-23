@@ -11,8 +11,8 @@ if [ cpufreq-set ]
 then
 	echo ""
 else
-	echo -e "${RED} [ERROR] cpufreq-set not found. Try installing... ${NC} \n"
-	echo "`sudo apt install cpufrequtils`"
+	echo -e "${RED} [ERROR] cpupowe not found. Try installing... ${NC} \n"
+	echo "`sudo apt install cpupower`"
 fi
 
 # Count CPUs :
@@ -29,10 +29,10 @@ then
 	MIN="$1Mhz"
 	MAX="$2Mhz"
 
-	for i in $(seq 0 $MAX_CPU); do
-		echo -e "${GREEN} [cpufreq-set]: CPU #" $i " >> [" $MIN "~" $MAX "]${NC}";
-		sudo cpufreq-set -c $i --min $MIN --max $MAX;
-	done
+		echo -e "${GREEN} [cpupower]: set $MIN ${NC}";
+		sudo cpupower frequency-set -d $MIN;
+    echo -e "${GREEN} [cpupower]: set $MAX ${NC}";
+		sudo cpupower frequency-set -u $MAX;
 
 	# Show new CPU frequencies :
 	# cpufreq-info
@@ -40,6 +40,6 @@ else
 	echo ""
 	echo -e "${RED}[NOTE]: It require min & max frequencies (in Mhz):"
 	echo ""
-	echo -e "	${GREEN} cpufreq-set-range 400 800 ${NC}"
+	echo -e "	${GREEN} cpupower-set-range 400 800 ${NC}"
 	echo ""
 fi
