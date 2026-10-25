@@ -14,20 +14,8 @@ This small utility was done to customize `cpupower` tool.
       sudo mv cpupower.service /etc/systemd/system/
       sudo systemctl daemon-reload
       sudo systemctl restart cpupower.service
-   
 
-### 3. Auto-Services
-    
-    cat << EOF | sudo tee /etc/systemd/system/cpupower.service
-    [Unit]
-    Description=CPU powersave
-    [Service]
-    Type=oneshot
-    Restart=always
-    ExecStart=usr/bin/cpupower-set-range 400 550
-    [Install]
-    WantedBy=multi-user.target
-    EOF
+* This included the autostart service.
 
 Start Service :
 
